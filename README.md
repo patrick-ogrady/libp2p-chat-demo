@@ -1,6 +1,7 @@
-# LibP2P Chat Demo
+# Libp2p Chat Demo
+This demo shows how easy it is to create a p2p chat app using libp2p.
 
-This demo combines the `routed-echo` and `chat-with-rendezvous` demo found in [go-libp2p-examples](https://github.com/libp2p/go-libp2p-examples) and borrows shamelessly from that repo.
+I created this demo by combining the `routed-echo` and `chat-with-rendezvous` demo found in [go-libp2p-examples](https://github.com/libp2p/go-libp2p-examples). I borrow **shamelessly** from that repo (especially in the *details* section of this repo).
 
 ## Build
 
@@ -23,7 +24,7 @@ On one computer (or terminal) run the command `./chat -p 1000` where `1000` is t
 2019/12/18 21:00:54 listening for streams....
 ```
 
-On another computer (or terminal) run the command `./chat -p 1001 -d QmQQm1Zfi6rx88JCy5TteHqAQ9CNQYsSbkH6nJuNho7hCJ` where `1001` is the port where the other libp2p node with listen and `QmQQm1Zfi6rx88JCy5TteHqAQ9CNQYsSbkH6nJuNho7hCJ` is the identify of the first node started. If you are running these nodes on the same computer, make sure that the ports you use are different. It should look something like this:
+On another computer (or terminal) run the command `./chat -p 1001 -d QmQQm1Zfi6rx88JCy5TteHqAQ9CNQYsSbkH6nJuNho7hCJ` where `1001` is the port where the other libp2p node with listen and `QmQQm1Zfi6rx88JCy5TteHqAQ9CNQYsSbkH6nJuNho7hCJ` is the identity of the first node started. If you are running these nodes on the same computer, make sure that the ports you use are different. It should look something like this:
 ```
 2019/12/18 21:08:59 bootstrapped with QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM
 2019/12/18 21:08:59 bootstrapped with QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd
@@ -44,15 +45,6 @@ This example is intended to show how easy it is to create a p2p chat app using l
 Functionally, this example works similarly to the echo example, however setup of the host includes wrapping it with a Kademila hash table, so it can find peers using only their IDs. 
 
 We'll also enable NAT port mapping to illustrate the setup, although it isn't guaranteed to actually be used to make the connections.  Additionally, this example uses the newer `libp2p.New` constructor.
-
-## Build
-
-From `go-libp2p-examples` base folder:
-
-```
-> make deps
-> go build ./routed-echo
-```
 
 ## Usage
 
@@ -88,4 +80,4 @@ In order to create the routed host, the example needs:
 A `routedhost` can now open streams (bi-directional channel between to peers) using [NewStream](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/basic#BasicHost.NewStream) and use them to send and receive data tagged with a `Protocol.ID` (a string). The host can also listen for incoming connections for a given
 `Protocol` with [`SetStreamHandle()`](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/basic#BasicHost.SetStreamHandler).  The advantage of the routed host is that only the Peer ID is required to make the connection, not the underlying address details, since they are provided by the DHT.
 
-The example makes use of all of this to enable communication between a listener and a sender using protocol `/echo/1.0.0` (which could be any other thing).
+The example makes use of all of this to enable communication between a listener and a sender using protocol `/chat/1.0.0` (which could be any other thing).
