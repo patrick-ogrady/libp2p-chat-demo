@@ -25,7 +25,7 @@ func main() {
 		// LibP2P code uses golog to log messages. They log with different
 		// string IDs (i.e. "swarm"). We can control the verbosity level for
 		// all loggers with:
-		golog.SetAllLoggers(gologging.DEBUG)
+		golog.SetAllLoggers(gologging.INFO)
 	} else {
 		golog.SetAllLoggers(gologging.ERROR)
 	}
